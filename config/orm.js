@@ -12,8 +12,9 @@ var orm = {
     });
   },
 
-  insertOne: function(tableName, colName, value, func) {
-    connection.query('INSERT INTO ?? (??) VALUES (?) ', [tableName, colName, value], function(error, data) {
+  // cols and values can be arrays or single items
+  insertOne: function(tableName, cols, values, func) {
+    connection.query('INSERT INTO ?? (??) VALUES (?)', [tableName, cols, values], function(error, data) {
       if(error) {
         console.log(error);
       } else {
@@ -28,7 +29,7 @@ var orm = {
       if(error) {
         console.log(error);
       } else {
-        func(data);
+        func(data); //callback
       }
     });
   }
