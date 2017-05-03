@@ -10,15 +10,17 @@ var burger = {
   }, 
 
   // cols and vals can be arrays if multiple columns or single items if just burger_name (must match)
-  create: function(cols, vals, callback) {
-    orm.insertOne('burgers', cols, vals, function(data) {
+  create: function(burgerName, callback) {
+    orm.insertOne('burgers', 'burger_name', burgerName, function(data) {
         callback(data); // do something with the data returned in the view? 
     });
   },
 
-  update: function(objColVals, condition, callback) {
-    // TODO: edit orm.updateOne so it can meet multiple conditions and set multiple column/value pairs
-    // TODO
+
+  devour: function(idVal, callback) {
+    orm.updateOne('burgers', 'id', idVal, 'devoured', '1', function(data) {
+      callback(data);
+    });
   }
 
 };
@@ -30,8 +32,11 @@ module.exports = burger;
 // =============DELETE LATER =============// 
 
 /* working calls of the above functions */
-burger.all(function(data) {console.log(data)});
-burger.create(['burger_name', 'devoured'], ['test-burger', 1], function(data) {console.log('inserted at ' + data.insertId);});
+// burger.all(function(data) {console.log(data)});
+// burger.create(['burger_name', 'devoured'], ['test-burger', 1], function(data) {console.log('inserted at ' + data.insertId);});
+// burger.devour(5, function(data) {
+//   console.log(data);
+// });
 
 
 /*  working standalone orm calls */
@@ -48,6 +53,9 @@ burger.create(['burger_name', 'devoured'], ['test-burger', 1], function(data) {c
 //   console.log('inserted new item at id ' + data.insertId);
 // });
 
-// orm.updateOne('burgers', 'id', '4', 'burger_name', 'BBQ', function(data) {
-//   console.log('updated!');
-// });
+orm.updateOne('burgers', 'id', '4', 'burger_name', 'BBQ', function(data) {
+  console.log('updated!');
+});
+
+
+// TODO: edit orm.updateOne so it can meet multiple conditions and set multiple column/value pairs
