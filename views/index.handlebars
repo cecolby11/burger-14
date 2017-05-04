@@ -7,8 +7,8 @@
   <button type="submit">Submit</button>
 </form>
 
-<ul class="devoured">
-  {{#each devoured}}
+<ul class="undevoured">
+  {{#each undevoured}}
     <li>
       <form action="/{{this.id}}?_method=PUT" method="POST">
         <input type="hidden" name="id" value="{{this.id}}">
@@ -20,8 +20,8 @@
   {{/each}}
 </ul>
 
-<ul class="undevoured">
-  {{#each undevoured}}
+<ul class="devoured">
+  {{#each devoured}}
     <li>
       <form action="/{{this.id}}?_method=PUT" method="POST">
         <input type="hidden" name="id" value="{{this.id}}">

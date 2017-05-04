@@ -5,6 +5,7 @@ var burger = require('../models/burger.js');
 // ROUTES
 var router = express.Router();
 
+// display main page with devoured and undevoured burgers
 router.get('/', function(request, response) {
   // get devoured burgers
   burger.allDevoured(function(data) {
@@ -19,6 +20,14 @@ router.get('/', function(request, response) {
       burgers.undevoured = data;
       response.render('index', burgers);
     });
+  });
+});
+
+// add new burger
+router.post('/', function(request, response) {
+  burger.create(request.body.burger_name, function(data) {
+    // redirect in callback so new burger is displayed appropriately 
+    response.redirect('/');
   });
 });
 
