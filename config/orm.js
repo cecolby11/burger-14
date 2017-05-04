@@ -12,6 +12,16 @@ var orm = {
     });
   },
 
+  selectWhere: function(tableName, criteriaCol, value, func) {
+    connection.query('SELECT * FROM ?? WHERE ?? = ?', [tableName, criteriaCol, value], function(error, data) {
+      if(error) {
+        console.log(error);
+      } else {
+        func(data); // callback
+      }
+    });
+  },
+
   // cols and values can be arrays or single items
   insertOne: function(tableName, cols, values, func) {
     connection.query('INSERT INTO ?? (??) VALUES (?)', [tableName, cols, values], function(error, data) {
@@ -20,7 +30,7 @@ var orm = {
       } else {
         func(data); //callback
       }
-    })
+    });
   }, 
 
   updateOne: function(tableName, criteriaCol, criteriaVal, updateColName, newValue, func) {
@@ -33,7 +43,6 @@ var orm = {
       }
     });
   }
-
 };
 
 module.exports = orm;

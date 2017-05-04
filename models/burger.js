@@ -9,6 +9,18 @@ var burger = {
     });
   }, 
 
+  allDevoured: function(callback) {
+    orm.selectWhere('burgers', 'devoured', 1, function(data) {
+      callback(data);
+    })
+  },
+
+  allUndevoured: function(callback) {
+    orm.selectWhere('burgers', 'devoured', 0, function(data) {
+      callback(data);
+    })
+  },
+
   // cols and vals can be arrays if multiple columns or single items if just burger_name (must match)
   create: function(burgerName, callback) {
     orm.insertOne('burgers', 'burger_name', burgerName, function(data) {
@@ -37,6 +49,12 @@ module.exports = burger;
 // burger.devour(5, function(data) {
 //   console.log(data);
 // });
+// burger.allDevoured(function(data) {
+//   console.log(data);
+// });
+// burger.allUndevoured(function(data) {
+//   console.log(data);
+// });
 
 
 /*  working standalone orm calls */
@@ -53,9 +71,9 @@ module.exports = burger;
 //   console.log('inserted new item at id ' + data.insertId);
 // });
 
-orm.updateOne('burgers', 'id', '4', 'burger_name', 'BBQ', function(data) {
-  console.log('updated!');
-});
+// orm.updateOne('burgers', 'id', '4', 'burger_name', 'BBQ', function(data) {
+//   console.log('updated!');
+// });
 
 
 // TODO: edit orm.updateOne so it can meet multiple conditions and set multiple column/value pairs
