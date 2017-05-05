@@ -1,0 +1,45 @@
+:root {
+  --main: #97CCBC;
+  --dark: #323333;
+}
+
+body {
+  background: var(--dark);
+}
+
+.page {
+  background-image: url('/assets/img/crossword.png');
+}
+.main {
+  max-width: 100%;
+  min-height: calc(100vh - 80px); /* for sticky footer: viewport height - footer height - footer margin - footer border... put viewport in html links!*/
+}
+h1, h2, h3, h4 {
+  font-weight: 300;
+}
+footer {
+  height: 40px;
+  margin-top: 40px;
+  line-height: 40px;
+  border-top: solid thin var(--main);
+}
+
+.jumbotron {
+  background: var(--main);
+}
+
+.undevoured, .devoured {
+  padding: 20px;
+  margin: 20px;
+  background: var(--dark);
+  color: var(--main);
+}
+
+.burger {
+  text-align: center;
+  margin: 10px;
+}
+.burger p {
+  font-size: 18px;
+  font-weight: 200;
+}
