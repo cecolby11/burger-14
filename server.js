@@ -10,6 +10,9 @@ var PORT = 8080;
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(__dirname + "/public"));
 
+// method override setup
+app.use(methodOverride('_method'));
+
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));

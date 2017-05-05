@@ -42,6 +42,16 @@ var orm = {
         func(data); //callback
       }
     });
+  }, 
+
+  deleteOne: function(tableName, criteriaCol, criteriaVal, func) {
+    connection.query('DELETE FROM ?? WHERE ?? = ?', [tableName, criteriaCol, criteriaVal], function(error, data) {
+      if(error) {
+        console.log(error);
+      } else {
+        func(data); // callback
+      }
+    });
   }
 };
 

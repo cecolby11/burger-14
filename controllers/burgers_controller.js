@@ -10,7 +10,6 @@ router.get('/', function(request, response) {
   // get devoured burgers
   burger.allDevoured(function(data) {
     // store it in object at devoured key in callback
-    console.log(data);
     var burgers = {
       devoured: data
     }
@@ -30,5 +29,25 @@ router.post('/', function(request, response) {
     response.redirect('/');
   });
 });
+
+// devour burger 
+router.put('/', function(request, response) {
+  // get item id to update from request body
+  var id = request.body.id;
+
+  burger.devour(id, function(data) {
+    response.redirect('/');
+  });
+});
+
+// remove burger
+router.delete('/', function(request, response) {
+  var id = request.body.id;
+
+  burger.delete(id, function(data) {
+    response.redirect('/');
+  });
+});
+
 
 module.exports = router;

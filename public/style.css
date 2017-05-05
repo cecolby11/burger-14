@@ -1,8 +1,7 @@
-devoured {
-  
-  background: red;
+.devoured {
+  color: green;
 }
 
-undevoured {
-
+.undevoured {
+  color: red;
 }
